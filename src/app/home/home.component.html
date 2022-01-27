@@ -1,0 +1,55 @@
+
+<section class="home">
+  <div class=" shadow rounded container mx-auto my-4 p-4">
+    <form [formGroup]="SubProduct">
+
+      <div>
+        <label  for="Name">Product Name *</label>
+        <input  formControlName="Name" class="form-control" id="Name" type="text"
+        [class.is-valid]="SubProduct.get('Name')?.valid && SubProduct.get('Name')?.touched"
+        [class.is-invalid]="SubProduct.get('Name')?.invalid && SubProduct.get('Name')?.touched">
+        <div *ngIf="SubProduct.get('Name')?.errors && SubProduct.get('Name')?.touched">
+          <p class="text-danger pt-1" *ngIf="SubProduct.get('Name')?.errors?.['required']">Product Name Is required </p>
+        </div>
+      </div>
+
+      <div class="py-4">
+        <label  for="cat">Product Category *</label>
+        <input formControlName="Category" class=" form-control" id="Category" type="text"
+        [class.is-valid]="SubProduct.get('Category')?.valid && SubProduct.get('Category')?.touched"
+        [class.is-invalid]="SubProduct.get('Category')?.invalid && SubProduct.get('Category')?.touched">
+        <div *ngIf="SubProduct.get('Category')?.errors && SubProduct.get('Category')?.touched">
+          <p class="text-danger pt-1" *ngIf="SubProduct.get('Category')?.errors?.['required']">Product Category Is required </p>
+        </div>
+      </div>
+
+      <div>
+        <label  for="Price">Product Price *</label>
+        <input formControlName="price" class=" form-control" id="Price" type="number"
+        [class.is-valid]="SubProduct.get('price')?.valid && SubProduct.get('price')?.touched"
+        [class.is-invalid]="SubProduct.get('price')?.invalid && SubProduct.get('price')?.touched">
+        <div *ngIf="SubProduct.get('price')?.errors && SubProduct.get('price')?.touched">
+          <p class="text-danger pt-1" *ngIf="SubProduct.get('price')?.errors?.['required']">Product price Is required </p>
+        </div>
+      </div>
+
+      <div class="py-4">
+        <label for="Desc">Product Description *</label>
+        <textarea formControlName="Description" class=" form-control" id="Description"
+        [class.is-valid]="SubProduct.get('Description')?.valid && SubProduct.get('Description')?.touched"
+        [class.is-invalid]="SubProduct.get('Description')?.invalid && SubProduct.get('Description')?.touched"></textarea>
+        <div *ngIf="SubProduct.get('Description')?.errors && SubProduct.get('Description')?.touched">
+          <p class="text-danger pt-1" *ngIf="SubProduct.get('Description')?.errors?.['required']">Product Description Is required </p>
+        </div>
+      </div>
+
+      <button *ngIf="!switch" [disabled]="SubProduct.invalid" class="btn rounded-pill" (click)="Addproduct(SubProduct)">Add Product</button>
+
+      <button *ngIf="switch" [disabled]="SubProduct.invalid" class="btn rounded-pill" (click)="Updateproduct(SubProduct)">Update Product</button>
+
+    </form>
+  </div>
+</section>
+
+<app-products [Products]='AllProducts'></app-products>
+

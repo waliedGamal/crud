@@ -1,0 +1,38 @@
+
+
+<section class="products shadow rounded container mx-auto my-5">
+
+  <input type="text" class="form-control pt-2" placeholder=" Search Product ..." [(ngModel)]="name">
+  <div class="py-3 ">
+    <table class="table text-start ">
+      <thead>
+        <tr class="tablehead d-flex justify-content-around p-2 ">
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category</th>
+          <th>price</th>
+          <th>Description</th>
+          <th>Update</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let product of Products |search:name ; index as i " class="d-flex justify-content-around tr_hover p-2">
+          <td>{{i}}</td>
+          <td>{{product.Name}}</td>
+          <td>{{product.Category}}</td>
+          <td>{{product.price}}</td>
+          <td>{{product.Description}}</td>
+          <td><i class="bi bi-pencil-square fs-5" (click)="update(i,product)"></i></td>
+          <td><i class="bi bi-trash fs-5" (click)="delete(i)"></i></td>
+        </tr>
+      </tbody>
+
+      <ng-container *ngIf="Products">
+        <h2 class="text-center py-2" *ngIf="!(Products|search:name).length">No Products...</h2>
+      </ng-container>
+    </table>
+
+  </div>
+</section>
